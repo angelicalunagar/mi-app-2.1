@@ -8,7 +8,7 @@ function Bloque2(){
       <h2>Funciones</h2>
       <h2>Funciones</h2>
       <h2>Funciones</h2>
-      <h2>Funciones</h2>
+      
     </div>
   );
 }
