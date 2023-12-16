@@ -1,14 +1,15 @@
 import React from "react";
 import '../estilos/Bloque1.css'
+import CardTemplate from "./CardTemplate";
+
 
 function Bloque1(){
   return(
     <div className="bloque1-contenedor">
-      <h1>Bloque 1</h1>
-      <h2>Funciones</h2>
-      <h2>Funciones</h2>
-      <h2>Funciones</h2>
-      <h2>Funciones</h2>
+      
+      <CardTemplate />
+    
+      
     </div>
   );
 }

@@ -34,7 +34,7 @@ const Encabezado = (props)=> {
             <Nav.Link href="#inicio" onClick={navigateToInicio}>Inicio</Nav.Link>
             <Nav.Link href="#quienes-somos" onClick={navigateToQuienesSomos}>Quienes somos</Nav.Link>
             <Nav.Link href="#contactanos" onClick={navigateToContactanos}>Contáctanos</Nav.Link>
-            <Nav.Link href="#aprende" as={Link} to="/aprende">Aprende</Nav.Link>
+            <Nav.Link href="#aprende" as={Link} to="/aprende"/* "/aprende" */>Aprende</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
