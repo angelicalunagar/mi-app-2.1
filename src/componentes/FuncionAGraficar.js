@@ -1,11 +1,16 @@
-import React, { useState, useRef} from 'react';
-import Perpendiculares from './Perpendiculares';
+//FuncionAGraficar.js
+import React, { useContext} from 'react';
+import { FuncionContext } from './FuncionContexto';
 
   const FuncionAGraficar = (props) => {
-    const [selectedFunc, setSelectedFunc] = useState("a*x");
+    //const [selectedFunc, setSelectedFunc] = useContext(FuncionContext);
+    const funcionContext = useContext(FuncionContext);
+    const { selectedFunc, setSelectedFunc } = funcionContext;
     
     const handleFuncChange = (e) => {
       setSelectedFunc(e.target.value);
+      props.func.current = e.target.value;
+      console.log(props.brd);
     };
 
     return (
@@ -18,9 +23,6 @@ import Perpendiculares from './Perpendiculares';
           <option value="a*x**4">f(x) = x^4</option>
         </select>
 
-        <div className="grafica-container">
-          <Perpendiculares func={selectedFunc} brd={props.brd}/>
-        </div>
       </div>
     );
   };

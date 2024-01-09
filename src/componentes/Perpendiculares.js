@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from 'react';
+//Perpendiculares.js
+import React, { useEffect, useContext, useState } from 'react';
+import { FuncionContext } from './FuncionContexto';
+import { JSXGraph } from 'jsxgraph';
 
   const Perpendiculares = (props) => {
-    const [functionExpression, setFunctionExpression] = useState(props.func);
-    const [pointCoordinates, setPointCoordinates] = useState({ x: 0, y: 0 });
-    const board = props.brd.current;
-
+    //const { selectedFunc, brd } = useContext(FuncionContext);
+    const funcionContext = useContext(FuncionContext);
+  
     useEffect(() => {
-      if (board !== null){
-        const slider = board.create('slider', [[0, 4], [3, 4], [-2, 4, 5]]);
+      const board = JSXGraph.initBoard('perpendiculars-container', {
+        boundingbox: [-5, 5, 5, -5],
+        axis: true,
+        pan: {
+          needShiftToPan: true,
+          enabled: true,
+        },
+        showcopyright: false,
+      });
 
- /*      const updateFunctionAndCoordinates = (x, a) => {
-        const expr = props.func.replace("a", `(${a})`);
-        setFunctionExpression(expr);
+      props.brd.current = board;
 
-        const computedValue = Function("x", `return ${expr}`)(x);
-        setPointCoordinates({ x, y: computedValue });
-      }; */
+      const slider = board.create('slider', [[0, 4], [3, 4], [-2, 4, 5]]);
 
       const selectedFunction = (x, a) => {
-        const expr = props.func.replace("a", `(${a})`);
+        const expr = props.func.current.replace("a", `(${a})`);
         return Function("x", `return ${expr}`)(x);
       };
 
-      board.suspendUpdate();
       const curve = board.create('functiongraph', [
         x => selectedFunction(x, slider.Value())
       ]);
@@ -32,25 +36,16 @@ import React, { useEffect, useState } from 'react';
       const perpendicularToXAxis = board.create('segment', [
         [()=> glider.X(), 0], [()=>glider.X(), ()=>glider.Y()]
       ], { straightFirst: false });
-      
+
       const perpendicularToYAxis = board.create('segment', [
         [0, ()=> glider.Y()], [()=> glider.X(), ()=>glider.Y()]
       ], { straightFirst: false });
-      
-      
-      board.update(); // Actualizar el tablero
 
-      }
-  
     });
 
     return (
       <div className='perpendiculars-container'>
         <div id="perpendiculars-container" className='jxgbox color-marco' style={{ width: '100%', height: '400px' }}/>
-        <div>
-          <p>Función: {functionExpression}</p>
-          <p>Coordenadas del punto: ({pointCoordinates.x}, {pointCoordinates.y})</p>
-        </div>
       </div>
     );
   };
