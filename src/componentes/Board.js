@@ -1,3 +1,4 @@
+// Este componente está en desuso 
 import { useEffect } from 'react';
 import { JSXGraph } from 'jsxgraph';
 

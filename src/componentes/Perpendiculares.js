@@ -3,9 +3,8 @@ import React, { useEffect, useContext, useState } from 'react';
 import { FuncionContext } from './FuncionContexto';
 import { JSXGraph } from 'jsxgraph';
 
-  const Perpendiculares = (props) => {
-    //const { selectedFunc, brd } = useContext(FuncionContext);
-    const funcionContext = useContext(FuncionContext);
+  const Perpendiculares = () => {
+    const { selectedFunc } = useContext(FuncionContext);
   
     useEffect(() => {
       const board = JSXGraph.initBoard('perpendiculars-container', {
@@ -18,12 +17,10 @@ import { JSXGraph } from 'jsxgraph';
         showcopyright: false,
       });
 
-      props.brd.current = board;
-
       const slider = board.create('slider', [[0, 4], [3, 4], [-2, 4, 5]]);
 
       const selectedFunction = (x, a) => {
-        const expr = props.func.current.replace("a", `(${a})`);
+        const expr = selectedFunc.replace("a", `(${a})`);
         return Function("x", `return ${expr}`)(x);
       };
 

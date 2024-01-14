@@ -1,9 +1,9 @@
 // FuncionContexto.js
-import React, { createContext, useState, useRef } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const FuncionContext = createContext();
 
-export const FuncionContextProvider = ({ children }) => {
+const FuncionContextProvider = ({ children }) => {
   const [selectedFunc, setSelectedFunc] = useState("a*x");
   return (
     <FuncionContext.Provider value={{ selectedFunc, setSelectedFunc}}>
@@ -11,3 +11,5 @@ export const FuncionContextProvider = ({ children }) => {
     </FuncionContext.Provider>
   );
 };
+
+export default FuncionContextProvider;
